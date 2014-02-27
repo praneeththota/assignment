@@ -1,2 +1,66 @@
 <h1>Reports#index</h1>
 <p>Find me in app/views/reports/index.html.erb</p>
+<br/>
+<svg id="test1"></svg>
+<script>
+
+
+
+
+    //Format A
+    nv.addGraph(function() {
+        var chart = nv.models.lineChart()
+                        .useInteractiveGuideline(true);
+        d3.select('#test1')
+          .datum(get_data())
+          .transition().duration(500)
+          .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+    });
+    function get_data() {
+        var single_student = [], class_a =[], class_b = [], tot_class = [];
+        <% for j in 0...@ass.length %>
+        single_student.push({y: '<%= @single_student[j] %>', x: '<%= @ass[j]%>'});
+        <% end %>
+        <% for i in 0..(@marks.length/@ass.length) %>
+        class_a.push({y: '<%= @marks[i] %>', x: '<%= @ass[i] %>'});
+        <% end %>
+        <% x = 0 %>
+        <% for k in (@marks.length/@ass.length)+1...@marks.length %>
+        class_b.push({y: '<%= @marks[k] %>', x: '<%= @ass[x] %>'});
+        <% x = x + 1 %>
+        <% end %>
+        <% for l in 0...@ass.length %>
+        tot_class.push({y: '<%= @all_student[i] %>', x: '<%= @ass[i] %>'});
+        <% end %>
+        return [
+            {
+                values: single_student,
+                key: "Sine Wave",
+                color: "#ff7f0e"
+            },
+            {
+                values: class_a,
+                key: "cos Wave",
+                color: "yellow"
+            },
+            {
+                values: class_b,
+                key: "tan",
+                color: "blue"
+            },
+            {
+                values: tot_class,
+                key: "sec",
+                color: "green"
+            }
+        ];
+    }
+
+
+
+
+</script>
