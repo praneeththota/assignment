@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'mysql2', '~> 0.3.11'
 gem 'twitter-bootstrap-rails'
-
+gem 'database_cleaner'
 
 # Gems used only for assets and not required
 # in production environments by default.

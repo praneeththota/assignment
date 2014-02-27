@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :claasses_id %><br />
-    <%= f.number_field :claasses_id %>
+    <%= f.collection_select :claasses_id,  Claass.order(:class_name), :id, :class_name, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :section_name %><br />
