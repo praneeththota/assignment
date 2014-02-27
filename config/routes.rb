@@ -1,11 +1,18 @@
 Assignment::Application.routes.draw do
+
+  match "/reports" => 'reports#index'
+
   resources :results
 
 
   resources :assessments
 
 
-  resources :students
+  resources :students do
+    collection do
+      get 'get_sections'
+    end
+  end
 
 
   resources :sections

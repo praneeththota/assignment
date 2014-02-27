@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :student_id %><br />
-    <%= f.number_field :student_id %>
+    <%= f.collection_select :student_id,  Student.order(:student_name), :id, :student_name, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :assessment_id %><br />
-    <%= f.number_field :assessment_id %>
+    <%= f.collection_select :assessment_id,  Assessment.order(:assessment_name), :id, :assessment_name, :include_blank => true %>
   </div>
   <div class="field">
     <%= f.label :percentatge %><br />

@@ -25,7 +25,7 @@ class StudentsController < ApplicationController
   # GET /students/new.json
   def new
     @student = Student.new
-
+    @cls = Claass.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @student }
@@ -79,5 +79,10 @@ class StudentsController < ApplicationController
       format.html { redirect_to students_url }
       format.json { head :no_content }
     end
+  end
+
+  def get_sections
+    section = Section.where("claasses_id = ?", params[:clas_id].to_i)
+    render :json=>[section]    if section
   end
 end

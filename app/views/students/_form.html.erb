@@ -10,10 +10,14 @@
       </ul>
     </div>
   <% end %>
+    <div class="field">
+      Class<br />
+      <%= select_tag 'class[]' , options_for_select(@cls.collect{ |u| [u.class_name, u.id] }),  :prompt => "Select Class", :id => "classs" %>
+    </div>
 
   <div class="field">
     <%= f.label :sections_id %><br />
-    <%= f.number_field :sections_id %>
+    <%= f.select :sections_id,'', include_blank: true %>
   </div>
   <div class="field">
     <%= f.label :student_name %><br />
@@ -23,3 +27,29 @@
     <%= f.submit %>
   </div>
 <% end %>
+<script>
+  $(document).ready(function(){
+
+    $("#classs").on("change", function(){
+        if($("#classs").val()!="")
+        {
+            $.get("/students/get_sections",{
+                clas_id : $("#classs").val()
+            }, function(data){
+
+                if (data[0]!=null)
+                {
+                    $('#student_sections_id').find('option').remove().end()
+                    $('#student_sections_id').append($("<option></option>").attr("value","").text("Select Section"));
+                    for(var i=0; i<data[0].length;i++)
+                    {
+                        $('#student_sections_id').append($("<option></option>").attr("value",data[0][i].id).text(data[0][i].section_name));
+                    }
+                }
+
+            })
+        }
+
+    });
+  });
+</script>
