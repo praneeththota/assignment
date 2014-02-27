@@ -1,0 +1,23 @@
+<h1>Listing claasses</h1>
+
+<table>
+  <tr>
+    <th>Class name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @claasses.each do |claass| %>
+  <tr>
+    <td><%= claass.class_name %></td>
+    <td><%= link_to 'Show', claass %></td>
+    <td><%= link_to 'Edit', edit_claass_path(claass) %></td>
+    <td><%= link_to 'Destroy', claass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Claass', new_claass_path %>
